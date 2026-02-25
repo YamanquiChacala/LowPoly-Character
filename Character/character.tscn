@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://baiqnvfxlgpxu"]
+
+[ext_resource type="PackedScene" uid="uid://dqtmqnex2boqn" path="res://Character/Character.glb" id="1_glpr6"]
+[ext_resource type="Script" uid="uid://dw5wkvkwerycw" path="res://Character/camera.gd" id="2_pjt0s"]
+[ext_resource type="Script" uid="uid://e4v0gpii7gsg" path="res://Character/character.gd" id="2_wa5vi"]
+[ext_resource type="Script" uid="uid://d0of5gr0jfawu" path="res://Character/character_stats.gd" id="3_a23tb"]
+[ext_resource type="Script" uid="uid://dc4uimfac3exa" path="res://Character/States/ground_state.gd" id="4_wfnr8"]
+
+[sub_resource type="Resource" id="Resource_uerqc"]
+script = ExtResource("3_a23tb")
+metadata/_custom_type_script = "uid://d0of5gr0jfawu"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_glpr6"]
+radius = 0.19189453
+height = 1.8095703
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_glpr6"]
+animation = &"run loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pjt0s"]
+animation = &"idle loop"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_wa5vi"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_wfnr8"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_pjt0s")
+nodes/Animation/position = Vector2(-360, 60)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_glpr6")
+"nodes/Animation 2/position" = Vector2(-360, 260)
+nodes/movement/node = SubResource("AnimationNodeBlend2_wa5vi")
+nodes/movement/position = Vector2(-20, 80)
+node_connections = [&"output", 0, &"movement", &"movement", 0, &"Animation", &"movement", 1, &"Animation 2"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_pjt0s"]
+var/velocity_var/name = &"velocity_var"
+var/velocity_var/type = 9
+var/velocity_var/value = Vector3(0, 0, 0)
+var/velocity_var/hint = 0
+var/velocity_var/hint_string = ""
+
+[node name="Character" unique_id=295758 instance=ExtResource("1_glpr6")]
+script = ExtResource("2_wa5vi")
+stats = SubResource("Resource_uerqc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0" unique_id=2045775641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, 0)
+shape = SubResource("CapsuleShape3D_glpr6")
+
+[node name="Skeleton3D" parent="Characterr rig" parent_id_path=PackedInt32Array(1343069162) index="0" unique_id=636200004]
+bones/0/position = Vector3(1.9407858e-15, 0.89021695, 0.0013515595)
+bones/0/rotation = Quaternion(0.07056665, 1.1891208e-07, 8.412198e-09, 0.9975071)
+bones/1/rotation = Quaternion(-0.1508377, -1.124829e-07, -1.8799481e-08, 0.98855853)
+bones/1/scale = Vector3(1, 0.9999999, 1)
+bones/2/rotation = Quaternion(0.043576207, 1.13676684e-07, 5.4310645e-09, 0.9990501)
+bones/2/scale = Vector3(1, 1.0000001, 1.0000001)
+bones/3/rotation = Quaternion(0.15502533, -7.508257e-15, 3.696091e-08, 0.98791057)
+bones/4/rotation = Quaternion(-0.11793349, -0.06359021, 0.007567841, 0.99095446)
+bones/5/position = Vector3(0.08865572, 0.95196784, 0.006106324)
+bones/5/rotation = Quaternion(0.99726063, 1.2100274e-05, 2.4713623e-07, 0.07396783)
+bones/5/scale = Vector3(1.0179898, 0.964969, 1.0179898)
+bones/6/rotation = Quaternion(0.22267963, -5.5749548e-05, 1.15810935e-05, 0.97489166)
+bones/6/scale = Vector3(1.0005006, 0.9895928, 1.0108942)
+bones/7/rotation = Quaternion(-0.6142846, 5.1323485e-05, 2.4809511e-05, 0.7890846)
+bones/7/scale = Vector3(0.98156345, 0.9850818, 1.0345803)
+bones/8/rotation = Quaternion(-1.0861368e-07, 0.9626635, -0.270701, -5.31622e-07)
+bones/9/position = Vector3(-0.088655725, 0.95196784, 0.006106363)
+bones/9/rotation = Quaternion(0.99726063, -1.2107207e-05, -2.4371377e-07, 0.073967636)
+bones/9/scale = Vector3(1.0179896, 0.9649693, 1.0179896)
+bones/10/rotation = Quaternion(0.2226792, 5.5745077e-05, -1.1596188e-05, 0.9748918)
+bones/10/scale = Vector3(1.0005008, 0.9895929, 1.0108945)
+bones/11/rotation = Quaternion(-0.6142843, -5.132703e-05, -2.4801626e-05, 0.7890848)
+bones/11/scale = Vector3(0.98156345, 0.98508185, 1.0345802)
+bones/13/position = Vector3(0.1884707, 1.4069774, -0.02743659)
+bones/13/rotation = Quaternion(-0.07157975, 0.06540929, -0.9889269, 0.112345934)
+bones/14/rotation = Quaternion(0.2605598, 0.1662551, -0.04560281, 0.94994116)
+bones/15/rotation = Quaternion(0.034492772, 0.008878042, -0.17959991, 0.98309475)
+bones/16/position = Vector3(-0.18847068, 1.4069774, -0.027436601)
+bones/16/rotation = Quaternion(-0.07157975, -0.06540921, 0.9889269, 0.112345934)
+bones/17/rotation = Quaternion(0.26055983, -0.16625524, 0.045602784, 0.9499412)
+bones/18/rotation = Quaternion(0.034492552, -0.008877972, 0.1795999, 0.98309475)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="3" unique_id=305503178]
+tree_root = SubResource("AnimationNodeBlendTree_wfnr8")
+anim_player = NodePath("../AnimationPlayer")
+parameters/movement/blend_amount = 0.0
+
+[node name="Camera" type="Node3D" parent="." index="4" unique_id=1770255481]
+script = ExtResource("2_pjt0s")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Camera" index="0" unique_id=1895223910]
+
+[node name="Camera3D" type="Camera3D" parent="Camera/SpringArm3D" index="0" unique_id=701950253]
+
+[node name="LimboHSM" type="LimboHSM" parent="." index="5" unique_id=1283609805]
+blackboard_plan = SubResource("BlackboardPlan_pjt0s")
+
+[node name="GroundState" type="LimboState" parent="LimboHSM" index="0" unique_id=2064116528]
+script = ExtResource("4_wfnr8")
