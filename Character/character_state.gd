@@ -1,10 +1,10 @@
 class_name CharacterState
 extends LimboState
 
-var character: Character
+var character: CharacterBody3D
 var bb: CharacterBB
 
 
 func _setup() -> void:
-	character = agent as Character
+	character = agent as CharacterBody3D
 	bb = CharacterBB.new(blackboard)
